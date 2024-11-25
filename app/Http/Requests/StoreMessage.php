@@ -19,7 +19,7 @@ class StoreMessage extends BaseFormRequest
             'id_chatroom'      => 'required|string|exists:chatrooms,id',
             'id_user' => 'nullable|string|exists:users,id',
             'id_attachmemt' => 'nullable|string|exists:attachmemts,id',
-            'message' => 'required|string',
+            'message' => 'nullable|string',
             'type_message' => 'required|string|in:file,text,link',
         ];
     }
