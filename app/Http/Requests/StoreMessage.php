@@ -20,7 +20,7 @@ class StoreMessage extends BaseFormRequest
             'id_user' => 'nullable|string|exists:users,id',
             'id_attachmemt' => 'nullable|string|exists:attachmemts,id',
             'message' => 'required|string',
-            'type_message' => 'required|string|unique:file,text,link',
+            'type_message' => 'required|string|in:file,text,link',
         ];
     }
 }

@@ -24,7 +24,7 @@ class AuthController extends Controller
             $user = $request->user();
             $token       = $user->createToken('API Access')->plainTextToken;
             $user->token = $token;
-            return $this->successResponse(new UserResource($user));
+            return $this->successResponse($user);
         }
     }
 }

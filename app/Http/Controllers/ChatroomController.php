@@ -17,7 +17,7 @@ class ChatroomController extends Controller
 
 
         $data = Chatroom::query()
-            ->whereHas('memberChatroom', function($query){
+            ->whereHas('memberChatroom', function($query)use($user){
                 $query->where('id_user', $user->id);
             })
             ->paginate($limit)
@@ -35,7 +35,7 @@ class ChatroomController extends Controller
     }
 
     public function show(Chatroom $chatroom){
-        $chatroom = $chatroom->load([
+        $chatroom->load([
             'memberChatroom',
             'message.user',
             'message.attachmemt'

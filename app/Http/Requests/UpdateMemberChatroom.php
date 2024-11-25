@@ -14,10 +14,10 @@ class UpdateMemberChatroom extends BaseFormRequest
     public function rules(): array
     {
         $rules = parent::rules();
-        
+
         return [
             //
-            'status_member' => 'required|string|unique:join,leave',
+            'status_member' => 'required|string|in:join,leave',
         ];
     }
 }

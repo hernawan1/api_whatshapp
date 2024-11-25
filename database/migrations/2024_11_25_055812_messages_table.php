@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_chatroom');
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_attachmemt');
+            $table->unsignedBigInteger('id_attachmemt')->nullabel();
             $table->string('message');
             $table->enum('type_message', ['file', 'text', 'link']);
             $table->timestampsTz();

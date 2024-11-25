@@ -31,11 +31,11 @@ class MessageController extends Controller
                 $validatedData->message = $attchmemt->path;
                 $createMessage = $message->create($validatedData);
                 event(new MessageSent($createMessage->id_chatroom, $createMessage->id_user, $createMessage->message));
-                return $this->successResponse($reateMessage);
+                return $this->successResponse($createMessage);
             }
             $createMessage = $message->create($validatedData);
-            event(new MessageSent($createMessage->id_chatroom, $createMessage->id_user, $createMessage->message));
-            return $this->successResponse($reateMessage);
+            event(new MessageSent($createMessage->id_chatroom,$createMessage->id_user,$createMessage->message));
+            return $this->successResponse($createMessage);
         }catch (Exception $e) {
             return $this->internalErrorResponse($e->getMessage());
         }

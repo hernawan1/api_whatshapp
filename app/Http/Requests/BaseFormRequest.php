@@ -37,7 +37,7 @@ class BaseFormRequest extends FormRequest
                 'path'           => $path,
             ];
         }
-        if($request->hasFile('video')){
+        if($this->hasFile('video')){
             $validation = ['required'];
             $picture = $request->file('video');
             $file = Str::random(10).$picture->getClientOriginalName();
