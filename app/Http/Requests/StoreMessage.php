@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMemberChatroom extends BaseFormRequest
+class StoreMessage extends BaseFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,10 +14,13 @@ class UpdateMemberChatroom extends BaseFormRequest
     public function rules(): array
     {
         $rules = parent::rules();
-        
         return [
             //
-            'status_member' => 'required|string|unique:join,leave',
+            'id_chatroom'      => 'required|string|exists:chatrooms,id',
+            'id_user' => 'nullable|string|exists:users,id',
+            'id_attachmemt' => 'nullable|string|exists:attachmemts,id',
+            'message' => 'required|string',
+            'type_message' => 'required|string|unique:file,text,link',
         ];
     }
 }
