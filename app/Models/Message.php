@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kra8\Snowflake\HasSnowflakePrimary;
 
 class Message extends Model
-{s
+{
     //
     use HasFactory;
     use HasSnowflakePrimary;
