@@ -16,10 +16,10 @@ Route::prefix('v1')->group(function () {
         ->only(['index', 'store', 'show']);
         Route::apiResource('member', MemberChatroomController::class)
         ->only(['index', 'store']);
-
+        Route::apiResource('message', MessageController::class)
+        ->only(['index', 'store']);
 
         Route::post('member/update',[MemberChatroomController::class, 'update']);
     });
-    Route::apiResource('message', MessageController::class)
-    ->only(['index', 'store']);
+
 });
