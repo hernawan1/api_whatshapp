@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('messages', function(Blueprint $table){
+        Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_chatroom');
-            $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_attachmemt');
-            $table->string('message');
-            $table->enum('type_message', ['file', 'text', 'link']);
+            $table->morphs('tokenable');
+            $table->string('name');
+            $table->string('token', 64)->unique();
+            $table->text('abilities')->nullable();
+            $table->timestampTz('last_used_at')->nullable();
+            $table->timestampTz('expires_at')->nullable();
             $table->timestampsTz();
-            $table->softDeletesTz();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('personal_access_tokens');
     }
 };

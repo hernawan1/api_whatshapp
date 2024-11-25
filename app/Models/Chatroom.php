@@ -26,4 +26,11 @@ class Chatroom extends Model
     protected $hidden = [
         'deleted_at',
     ];
+
+    public function memberChatroom(){
+        return $this->hasMany(MemberChatroom::class, 'id', 'id_chatroom');
+    }
+    public function message(){
+        return $this->hasMany(Message::class, 'id', 'id_chatroom');
+    }
 }

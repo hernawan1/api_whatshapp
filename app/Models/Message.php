@@ -14,19 +14,20 @@ class Message extends Model
     use HasSnowflakePrimary;
     use SoftDeletes;
     //
-    protected $table      = 'attachmemts';
+    protected $table      = 'messages';
     protected $primaryKey = 'id';
     protected $casts      = [
         'id'                    => 'string',
         'id_chatroom'           => 'string',
         'id_user'               => 'string',
+        'id_attachmemt'         => 'string'
     ];
     protected $fillable = [
         'id_chatroom',
         'id_user',
-        'name_file',
-        'type_file',
-        'path'
+        'id_attachmemt',
+        'message',
+        'type_message'
     ];
     protected $hidden = [
         'deleted_at',
@@ -38,5 +39,9 @@ class Message extends Model
 
     public function chatroom(){
         return $this->belongsTo(Chatroom::class, 'id_chatroom', 'id');
+    }
+
+    public function attachmemt(){
+        return $this->belongsTo(Attachmemt::class, 'id_attachmemt', 'id');
     }
 }
