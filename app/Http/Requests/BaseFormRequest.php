@@ -70,6 +70,27 @@ class BaseFormRequest extends FormRequest
         return $validatedData;
     }
 
+    protected function passedValidation()
+    {
+        if ($this->hasFile('picture')) {
+            // Get the uploaded file
+            $file = $this->file('picture');
+
+            // Define the file path and name
+            $path = 'root/picture/' . Str::random(10).$picture->getClientOriginalName();;
+
+            if ($result) {
+                $this->merge([
+                    'path'   => $path,
+                ]);
+            } else {
+                throw ValidationException::withMessages([
+                    'file' => 'The file failed to upload.',
+                ]);
+            }
+        }
+    }
+
     public function lampiranRules(): array
     {
         return [
