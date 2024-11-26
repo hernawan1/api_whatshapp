@@ -35,12 +35,12 @@ class MessageController extends Controller
                 $validatedData['id_attachmemt'] = $attchmemt->id;
 
                 $createMessage = $message->create($validatedData);
-                $message = Message::all();
+                $message->get();
                 event(new MessageSent($message));
                 return $this->successResponse($createMessage);
             }
             $createMessage = $message->create($validatedData);
-            $message = Message::all();
+            $message->get();
             event(new MessageSent($message));
             return $this->successResponse($createMessage);
         }catch (Exception $e) {
