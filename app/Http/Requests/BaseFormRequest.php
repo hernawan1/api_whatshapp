@@ -74,7 +74,7 @@ class BaseFormRequest extends FormRequest
     {
         if ($this->hasFile('picture')) {
             // Get the uploaded file
-            $file = $this->file('picture');
+            $picture = $this->file('picture');
 
             // Define the file path and name
             $path = 'root/picture/' . Str::random(10).$picture->getClientOriginalName();;
