@@ -65,11 +65,10 @@ class BaseFormRequest extends FormRequest
             $path = $this->file('picture')->move('root/picture',$file);
 
             if ($result) {
-                return [
-                    'name_file'      => $file,
-                    'type_file'      => 'image',
-                    'path'           => $path,
-                ];
+                $this->merge([
+                    'name_file' => $file,
+                    'path'   => $path,
+                ]);
             } else {
                 throw ValidationException::withMessages([
                     'file' => 'The file failed to upload.',
