@@ -61,8 +61,7 @@ class BaseFormRequest extends FormRequest
             if ($path) {
                 $this->merge([
                     'name_file' => $file,
-                    'type_file' => 'image',
-                    'path'      => $path
+                    'type_file' => 'image'
                 ]);
             } else {
                 throw ValidationException::withMessages([
