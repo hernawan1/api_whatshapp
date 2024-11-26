@@ -69,4 +69,13 @@ class BaseFormRequest extends FormRequest
 
         return $validatedData;
     }
+
+    public function lampiranRules(): array
+    {
+        return [
+            'name_file' => 'required|string',
+            'type_file'             => 'required|string',
+            'path'    => 'required|string',
+        ];
+    }
 }
