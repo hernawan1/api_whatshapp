@@ -29,24 +29,17 @@ class BaseFormRequest extends FormRequest
     public function rules(): array
     {
         if ($this->hasFile('picture')) {
-            $validation = ['required'];
-            $picture = $this->file('picture');
-            $file = Str::random(10).$picture->getClientOriginalName();
-
+            $validation = ['mimes:jpeg,bmp,png,gif,svg,pdf'];
             return [
-                'name_file'      => $file,
-                'type_file'      => 'image'
+                'file' => implode('|', $validation),
+                'path' => 'nullable|string',
             ];
         }
         if($this->hasFile('video')){
-            $validation = ['required'];
-            $picture = $request->file('video');
-            $file = Str::random(10).$picture->getClientOriginalName();
-            $path = $this->file('video')->move('root/video',$file);
-
+            $validation = ['required|mimes:mp4,x-flv,x-mpegURL,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv'];
             return [
-                'name_file'      => $file,
-                'type_file'      => 'video'
+                'file' => implode('|', $validation),
+                'path' => 'nullable|string',
             ];
         }
         return [];
