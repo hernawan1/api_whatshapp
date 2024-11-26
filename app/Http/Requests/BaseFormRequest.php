@@ -57,19 +57,6 @@ class BaseFormRequest extends FormRequest
         throw new HttpResponseException($this->badRequestResponse(data: $validator->errors()));
     }
 
-
-    public function validated($key = null, $default = null)
-    {
-        $validatedData = parent::validated($key, $default);
-
-        // Custom logic to modify the validated data
-        if ($this->has('path')) {
-            $validatedData['path'] = $this->input('path');
-        }
-
-        return $validatedData;
-    }
-
     protected function passedValidation()
     {
         if ($this->hasFile('picture')) {
@@ -89,6 +76,19 @@ class BaseFormRequest extends FormRequest
                 ]);
             }
         }
+    }
+
+
+    public function validated($key = null, $default = null)
+    {
+        $validatedData = parent::validated($key, $default);
+
+        // Custom logic to modify the validated data
+        if ($this->has('path')) {
+            $validatedData['path'] = $this->input('path');
+        }
+
+        return $validatedData;
     }
 
     public function lampiranRules(): array
