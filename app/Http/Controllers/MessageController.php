@@ -25,7 +25,7 @@ class MessageController extends Controller
 
     public function store(StoreMessage $request, Message $message){
         try{
-
+            dd($request);
             $validatedData = $request->validated();
 
             if($validatedData['type_message'] == 'file'){
