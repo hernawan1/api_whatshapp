@@ -36,8 +36,7 @@ class BaseFormRequest extends FormRequest
 
             return [
                 'name_file'      => $file,
-                'type_file'      => 'image',
-                'path'           => $path,
+                'type_file'      => 'image'
             ];
         }
         if($this->hasFile('video')){
@@ -48,8 +47,7 @@ class BaseFormRequest extends FormRequest
 
             return [
                 'name_file'      => $file,
-                'type_file'      => 'video',
-                'path'           => $path,
+                'type_file'      => 'video'
             ];
         }
         return [];
@@ -67,7 +65,27 @@ class BaseFormRequest extends FormRequest
             $picture = $this->file('picture');
 
             // Define the file path and name
-            $path = 'root/picture/'.$picture->getClientOriginalName();
+            $file = Str::random(10).$picture->getClientOriginalName();
+            $path = $this->file('picture')->move('root/picture',$file);
+
+            if ($path) {
+                $this->merge([
+                    'path'   => $path
+                ]);
+            } else {
+                throw ValidationException::withMessages([
+                    'file' => 'The file failed to upload.',
+                ]);
+            }
+        }
+
+        if ($this->hasFile('video')) {
+            // Get the uploaded file
+            $video = $this->file('video');
+
+            // Define the file path and name
+            $video = Str::random(10).$video->getClientOriginalName();
+            $path = $this->file('video')->move('root/video',$video);
 
             if ($path) {
                 $this->merge([
