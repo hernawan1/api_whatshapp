@@ -68,7 +68,7 @@ class BaseFormRequest extends FormRequest
 
             if ($path) {
                 $this->merge([
-                    'path'   => $path,
+                    'path'   => $path
                 ]);
             } else {
                 throw ValidationException::withMessages([
