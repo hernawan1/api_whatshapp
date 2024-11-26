@@ -60,7 +60,9 @@ class BaseFormRequest extends FormRequest
 
             if ($path) {
                 $this->merge([
-                    'path'   => $path
+                    'name_file' => $file,
+                    'type_file' => 'image',
+                    'path'      => $path
                 ]);
             } else {
                 throw ValidationException::withMessages([
@@ -79,7 +81,9 @@ class BaseFormRequest extends FormRequest
 
             if ($path) {
                 $this->merge([
-                    'path'   => $path
+                    'name_file' => $file,
+                    'type_file' => 'video',
+                    'path'      => $path
                 ]);
             } else {
                 throw ValidationException::withMessages([
