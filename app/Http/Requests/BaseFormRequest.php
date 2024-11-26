@@ -27,9 +27,9 @@ class BaseFormRequest extends FormRequest
     {
         if ($this->hasFile('picture')) {
             $validation = ['required'];
-            $picture = $request->file('picture');
+            $picture = $this->file('picture');
             $file = Str::random(10).$picture->getClientOriginalName();
-            $path = $request->file('picture')->move('root/picture',$file);
+            $path = $this->file('picture')->move('root/picture',$file);
 
             return [
                 'name_file'      => $file,
@@ -41,7 +41,7 @@ class BaseFormRequest extends FormRequest
             $validation = ['required'];
             $picture = $request->file('video');
             $file = Str::random(10).$picture->getClientOriginalName();
-            $path = $request->file('video')->move('root/video',$file);
+            $path = $this->file('video')->move('root/video',$file);
 
             return [
                 'name_file'      => $file,
