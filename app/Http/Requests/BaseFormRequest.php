@@ -29,16 +29,16 @@ class BaseFormRequest extends FormRequest
     public function rules(): array
     {
         if ($this->hasFile('picture')) {
-            $validation = ['mimes:jpeg,bmp,png,gif,svg,pdf'];
+            $validation = 'required|mimes:jpeg,bmp,png,gif,svg,pdf';
             return [
-                'file' => implode('|', $validation),
+                'file' => $validation,
                 'path' => 'nullable|string',
             ];
         }
         if($this->hasFile('video')){
-            $validation = ['required|mimes:mp4,x-flv,x-mpegURL,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv'];
+            $validation = 'required|mimes:mp4,x-flv,x-mpegURL,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv';
             return [
-                'file' => implode('|', $validation),
+                'file' => $validation,
                 'path' => 'nullable|string',
             ];
         }
