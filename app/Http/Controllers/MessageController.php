@@ -25,13 +25,13 @@ class MessageController extends Controller
 
     public function store(StoreMessage $request, Message $message){
         try{
-            dd($request);
+            // dd($request);
             $validatedData = $request->validated();
 
             if($validatedData['type_message'] == 'file'){
                 $attchmemt = Attachmemt::create($validatedData);
                 $validatedData['message'] = $attchmemt->path;
-                // dd($validatedData);
+                dd($validatedData);
                 $createMessage = $message->create($validatedData);
                 event(new MessageSent($createMessage->id_chatroom, $createMessage->id_user, $createMessage->message));
                 return $this->successResponse($createMessage);
