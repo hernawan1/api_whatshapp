@@ -23,7 +23,7 @@ class MessageSent implements ShouldBroadcastNow
 
     public function __construct(Message $message)
     {
-        $this->message = $message->first();
+        $this->message = $message->orderBy('created_at', 'ASC')->first();
     }
 
     public function broadcastOn()
