@@ -30,7 +30,10 @@ class MessageController extends Controller
 
             if($validatedData['type_message'] == 'file'){
                 $attchmemt = Attachmemt::create($validatedData);
+
                 $validatedData['message'] = $attchmemt->path;
+                $validatedData['id_attachmemt'] = $attchmemt->id;
+                
                 $createMessage = $message->create($validatedData);
                 event(new MessageSent($createMessage->id_chatroom, $createMessage->id_user, $createMessage->message));
                 return $this->successResponse($createMessage);
