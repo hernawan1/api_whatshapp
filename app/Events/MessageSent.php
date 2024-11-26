@@ -23,7 +23,7 @@ class MessageSent implements ShouldBroadcastNow
 
     public function __construct(Message $message)
     {
-        $this->message = $message->get();
+        $this->message = $message->first();
     }
 
     public function broadcastOn()
