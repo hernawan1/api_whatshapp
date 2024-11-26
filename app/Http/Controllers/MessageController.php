@@ -27,7 +27,7 @@ class MessageController extends Controller
         try{
 
             $validatedData = $request->validated();
-            dd($validatedData);
+
             if($validatedData['type_message'] == 'file'){
                 $attchmemt = Attachmemt::create($validatedData);
                 $validatedData->message = $attchmemt->path;
