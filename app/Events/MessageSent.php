@@ -23,7 +23,7 @@ class MessageSent implements ShouldBroadcastNow
 
     public function __construct(Message $message)
     {
-        $this->message = $message->with(['attachmemt'])->get();
+        $this->message = $message->load(['attachmemt']);
     }
 
     public function broadcastOn()
