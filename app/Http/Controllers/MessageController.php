@@ -25,9 +25,9 @@ class MessageController extends Controller
 
     public function store(StoreMessage $request, Message $message){
         try{
-            // dd($request);
-            $validatedData = $request->validated();
 
+            $validatedData = $request->validated();
+            dd($validatedData);
             if($validatedData['type_message'] == 'file'){
                 $attchmemt = Attachmemt::create($validatedData);
 
