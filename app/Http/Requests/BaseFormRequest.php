@@ -31,12 +31,16 @@ class BaseFormRequest extends FormRequest
         if ($this->hasFile('picture')) {
             return [
                 'picture'   => 'required|mimes:jpeg,bmp,png,gif,svg,pdf',
+                'name_file' => 'nullable|string',
+                'type_file' => 'nullable|string',
                 'path'      => 'nullable|string',
             ];
         }
         if($this->hasFile('video')){
             return [
-                'videof'    => 'required|mimes:mp4,x-flv,x-mpegURL,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv',
+                'video'     => 'required|mimes:mp4,x-flv,x-mpegURL,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv',
+                'name_file' => 'nullable|string',
+                'type_file' => 'nullable|string',
                 'path'      => 'nullable|string',
             ];
         }
@@ -61,7 +65,8 @@ class BaseFormRequest extends FormRequest
             if ($path) {
                 $this->merge([
                     'name_file' => $file,
-                    'type_file' => 'image'
+                    'type_file' => 'image',
+                    'path'      => $path
                 ]);
             } else {
                 throw ValidationException::withMessages([
