@@ -79,7 +79,7 @@ class BaseFormRequest extends FormRequest
             // Define the file path and name
             $path = 'root/picture/' . Str::random(10).$picture->getClientOriginalName();;
 
-            if ($result) {
+            if ($path) {
                 $this->merge([
                     'path'   => $path,
                 ]);
