@@ -57,6 +57,27 @@ class BaseFormRequest extends FormRequest
         throw new HttpResponseException($this->badRequestResponse(data: $validator->errors()));
     }
 
+    protected function passedValidation()
+    {
+        if ($this->hasFile('picture')) {
+            $picture = $this->file('picture');
+            $file = Str::random(10).$picture->getClientOriginalName();
+            $path = $this->file('picture')->move('root/picture',$file);
+
+            if ($result) {
+                return [
+                    'name_file'      => $file,
+                    'type_file'      => 'image',
+                    'path'           => $path,
+                ];
+            } else {
+                throw ValidationException::withMessages([
+                    'file' => 'The file failed to upload.',
+                ]);
+            }
+        }
+    }
+
     public function validated($key = null, $default = null)
     {
         $validatedData = parent::validated($key, $default);
