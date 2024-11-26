@@ -23,7 +23,7 @@ class MessageSent implements ShouldBroadcastNow
 
     public function __construct(Message $message)
     {
-        $this->message = $message->load(['chatroom']);
+        $this->message = $message;
     }
 
     public function broadcastOn()
