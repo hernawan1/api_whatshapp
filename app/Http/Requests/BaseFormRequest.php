@@ -30,13 +30,13 @@ class BaseFormRequest extends FormRequest
     {
         if ($this->hasFile('picture')) {
             return [
-                'picture' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf',
+                'file' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf',
                 'path' => 'nullable|string',
             ];
         }
         if($this->hasFile('video')){
             return [
-                'video' => 'required|mimes:mp4,x-flv,x-mpegURL,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv',
+                'file' => 'required|mimes:mp4,x-flv,x-mpegURL,MP2T,3gpp,quicktime,x-msvideo,x-ms-wmv',
                 'path' => 'nullable|string',
             ];
         }
