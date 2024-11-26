@@ -32,7 +32,6 @@ class BaseFormRequest extends FormRequest
             $validation = ['required'];
             $picture = $this->file('picture');
             $file = Str::random(10).$picture->getClientOriginalName();
-            $path = $this->file('picture')->move('root/picture',$file);
 
             return [
                 'name_file'      => $file,
